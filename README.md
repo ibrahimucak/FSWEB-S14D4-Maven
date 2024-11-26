@@ -1,46 +1,45 @@
-#  Java Abstraction 
+Proje Özeti: Java Abstraction
+Bu proje, Java Abstraction kavramını kullanarak bir oyun ve satış ürünü simülasyonu oluşturmayı hedefliyor. Temel olarak iki ana kısımdan oluşuyor: Product For Sale ve Monster For Simple RPG Game.
 
-### Proje Kurulumu
+1. Product For Sale
+Bu kısımda, çeşitli ürünlerin özelliklerini tanımlamak için abstract sınıflar ve miras alma (inheritance) kullanıyoruz.
 
-Projeyi öncelikle forklayın ve clone edin.
-Daha sonra projeyi IntellijIDEA kullanarak açınız. README.md dosyasını dikkatli bir şekilde okuyarak istenenleri yapmaya çalışın.
-Proje sayımız ilerledikçe proje yönetimimizi kolaylaştırmak adına projelerimizi belli klasör kalıplarında saklamak işimizi kolaylaştırmak adına iyi bir alışkanlıktır.
-Örnek bir Lokasyon: Workintech/Sprint_1/Etud.
+Adımlar:
+ProductForSale abstract sınıfı:
 
-### Hedeflerimiz:
+type, price, ve description adında üç tane private değişken tanımlanır.
+Bu değişkenlere karşılık gelen getter metodları yazılır.
+Tek bir constructor metodu oluşturulup bu değişkenlerin değeri set edilir.
+getSalesPrice(int quantity) metodu, ürünün fiyatı ile verilen miktarı çarparak satış fiyatını döner.
+showDetails abstract metodu, alt sınıflarda her ürünün detaylarını ekrana bastırmak için kullanılır.
+Chocolate, Coke, Bread sınıfları:
 
-### Product For Sale
+Her bir sınıf, ProductForSale sınıfından türetilir.
+Her bir sınıf, ProductForSale'ın constructor metodunu kullanarak ortak özelliklere sahip olur, ayrıca kendine özgü ek özellikler ekler.
+showDetails metodu, her ürünün özelliklerini ekrana anlaşılabilir bir şekilde yazdırır.
+Store sınıfı:
 
- * org.example.model paketi altında ProductForSale isimli bir ```abstract``` sınıf oluşturunuz.
- * Bu sınıf içerisinde 3 tane ```private``` değişken tanımlayınız. ```type, price, description```. Tiplerinin ne olması gerektiğine karar veriniz ve hepsi için birer getter metodu yazınız.
- * Tek bir tane ```constructor``` metodu tanımlayınız. 3 ```instance variable``` değerini de set etmeli.
- * ProductForSale sınıfına ```getSalesPrice(int quantity)``` isimli bir metod ekleyiniz. ```quantity*price``` değerini dönmeli.
- * ProductForSale sınıfına ```showDetails``` isimli ```abstract``` bir metod ekleyiniz. Dönüş değeri olmamalı.
+listProducts metodu, parametre olarak aldığı ürünleri döngüyle gezerek her bir ürünün showDetails metodunu çağırır.
+Main metodunda, bir dizi oluşturulur ve içerisine Chocolate, Coke, Bread ürünlerinden birer adet eklenir. Bu dizi listProducts metoduna parametre olarak geçirilir.
+2. Monster For Simple RPG Game
+Bu kısımda, abstract sınıflar, interface'ler ve miras alma kullanılarak bir RPG (rol yapma) oyununda kullanılacak yaratıklar tanımlanır.
 
- * org.example.model paketi altında ```Chocolate, Coke, Bread``` isimli 3 tane yeni sınıf oluşturunuz. 3 sınıfta ```ProductForSale``` sınıfından türemeli.
- * Her sınıf ProductForSale sınıfının değerlerini set edebileceği bir constructora sahip olmalı. Ekstradan başka constructor methodlarına da sahip olabilirler.
- * Her sınıfa o sınıfa özgü en az bir tane daha ```instance variable``` değeri ekleyiniz.
- * ```showDetails``` isimli metot, ProductForSale üzerinde var olan ve kendine özgü olan tüm ```instance variable``` değerlerini anlaşılabilir bir şekilde ekrana bastırmalı.
+Adımlar:
+Monster abstract sınıfı:
 
- * org.example.model.Store sınıfı içerisinde bulanan ```listProducts``` metodu parametre olarak aldığı ```products``` dizisini gezmeli ve her bir değer için  ```showDetails``` metodunu çağırmalı.
- * org.example.model.Store sınıfında main metodu içerisinde ProductForSale değeri alabilen bir dizi oluşturmalısınız. 
- * Bu dizinin içerisine ```Chocolate, Coke, Bread``` objelerinden birer adet eklemelisiniz.
- * Bu diziyi ```listProducts``` metoduna parametre olarak geçiniz.
- * Her bir ```showDetails``` metodu çağırıldığında çağırıldığı objeye göre mesaj döndüğünden emin olunuz.
+name, hitPoints, ve damage adında üç instance variable tanımlanır.
+Bir constructor metoduyla bu değişkenler set edilir.
+Her bir değişken için getter metodları yazılır.
+Troll sınıfı:
 
-### Monster For Simple RPG Game
-
- * org.example.rpg paketi altında ```Monster``` isminde bir ```abstract``` sınıf tanımlayınız.
- * ```Monster``` sınıfının 3 tane ```instance variable``` olmalı. ```name => String, hitPoints => int, damage => double```
- * Monster sınıfı için bir tane ```constructor``` metodu tanımlanmalı. İlgili 3 sınıf değişkenini de set edebilmeli.
- * 3 sınıf değişkeni içinde getter metodu tanımlanmalı.
- * Monster sınıfı parent olacak şekilde Troll isminde bir sınıf tanımlayınız. İsteğe göre başka sınıflarda ekleyebilirsiniz.(Werewolf vs.)
-
- * ```Bleedable``` isimli bir interface tanımlayınız içerisinde ```bleed``` isimli bir method olmalı ve double değer dönmeli.
- * ```Poisonable``` isimli bir interface tanımlayınız içerisinde ```poison``` isimli bir method olmalı ve double değer dönmeli.
- * Eğer yaratığın saldırdığında kanatma olasılığı varsa ```bleed``` metodu ```getDamage()*0.25``` değerini dönmeli.
- * Eğer yaratığın saldırdığında zehirleme olasılığı varsa ```poison``` metodu ```getDamage()*0.3``` değerini dönmeli.
- * Troll sınıfı bu 2 interface i de implement etmeli.
- * Monster sınıfına  ```attack``` isimli bir method ekleyin. ```getDamage() + bleed() + poison()``` değerini dönmeli.
-
- 
+Monster sınıfından türetilir.
+Bleedable ve Poisonable interface'leri implement edilir.
+Bleedable interface'inde bleed metodu, yaratığın saldırı esnasında kanama durumunu hesaplar. Kanama oranı, damage değerinin %25'idir.
+Poisonable interface'inde poison metodu, yaratığın saldırısının zehirleme durumunu hesaplar. Zehirleme oranı, damage değerinin %30'u kadardır.
+attack metodu, saldırı anında yaratığın toplam hasarını hesaplar: getDamage() + bleed() + poison().
+Özetle:
+Abstraction ve Inheritance kullanılarak ürünler ve yaratıklar için soyut sınıflar oluşturuldu.
+Ürünler için ortak özellikler ve metodlar ProductForSale sınıfında toplandı ve türetilen sınıflarda bu özelliklere ek olarak spesifik özellikler eklendi.
+Yaratıklar için ise Monster sınıfı soyut bir temel oluşturdu ve Troll gibi spesifik sınıflar bu temelden türedi.
+Interfaces (Bleedable, Poisonable) kullanılarak, yaratıkların ek davranışları modellenmiştir.
+Bu yapılar sayesinde kod tekrarından kaçınılmış, esnek ve genişletilebilir bir tasarım oluşturulmuştur.
